@@ -7,13 +7,13 @@ def main():
     video_frames = read_video(input_video_path)
 
     # Initialize player tracker
-    player_tracker = PlayerTracker(model_path= "yolo11n")
+    player_tracker = PlayerTracker(model_path= "yolov8x")
 
     # Detect players in the video
     player_detections = player_tracker.detect_frames(frames= video_frames, read_from_stub= True, stub_path= "tracker_stubs/player_detections.pkl")
 
     # Initialize ball tracker
-    ball_tracker = BallTracker(model_path= "models/yolo11_best.pt")
+    ball_tracker = BallTracker(model_path= "models/yolo11_last.pt")
 
     # Detect balls in the video
     ball_detections = ball_tracker.detect_frames(frames= video_frames, read_from_stub= True, stub_path= "tracker_stubs/ball_detections.pkl")
