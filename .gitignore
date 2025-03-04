@@ -1,0 +1,25 @@
+# Ignore dataset directories
+training/tennis_court_det_dataset/
+training/tennis-ball-detection-6/
+
+# Ignore common files
+*.log
+*.csv
+*.tmp
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore virtual environment
+venv/
+.env
+
+# Ignore model checkpoints and large files
+*.pt
+*.pth
+*.h5
+runs/
+
+# Ignore ZIP files
+*.zip
