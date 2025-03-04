@@ -1,5 +1,5 @@
 from utils import (read_video, save_video) 
-from trackers import PlayerTracker
+from trackers import PlayerTracker, BallTracker
 
 def main():
     # Read video
@@ -12,10 +12,19 @@ def main():
     # Detect players in the video
     player_detections = player_tracker.detect_frames(frames= video_frames, read_from_stub= True, stub_path= "tracker_stubs/player_detections.pkl")
 
+    # Initialize ball tracker
+    ball_tracker = BallTracker(model_path= "models/yolo11_best.pt")
+
+    # Detect balls in the video
+    ball_detections = ball_tracker.detect_frames(frames= video_frames, read_from_stub= True, stub_path= "tracker_stubs/ball_detections.pkl")
+
     # Draw output
 
     ## Draw player bounding boxes
     output_video_frames = player_tracker.draw_bboxes(video_frames, player_detections)
+
+    ## Draw ball bounding boxes
+    output_video_frames = ball_tracker.draw_bboxes(output_video_frames, ball_detections)
 
     save_video(output_video_frames, "output_videos/output_video.avi")
 
