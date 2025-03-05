@@ -63,14 +63,14 @@ valid_dataset = KeypointsDataset(
 train_loader = DataLoader(train_dataset, batch_size=8, shuffle=True)
 valid_loader = DataLoader(valid_dataset, batch_size=8, shuffle=True)
 
-model = models.resnet50(pretrained=True)
+model = models.resnet101(pretrained=True)
 model.fc = torch.nn.Linear(model.fc.in_features, 14*2) # Replaces the last layer with a new one that outputs 14*2 values (x,y for each keypoint)
 
 model = model.to(device)
 
 criterion = torch.nn.MSELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
-epochs= 20
+epochs= 30
 
 for epoch in range(epochs):
     for i, (img,kps) in enumerate(train_loader): 

@@ -9,7 +9,7 @@ class CourtLineDetector:
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         #self.device = torch.device("cpu")
 
-        self.model = models.resnet50(pretrained= False).to(self.device)
+        self.model = models.resnet101(pretrained= False).to(self.device)
         # Change the number of output features to 28 (14 keypoints * 2 coordinates)
         self.model.fc = torch.nn.Linear(self.model.fc.in_features, 14*2).to(self.device)
         # Load the model weights
